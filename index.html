@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Comisiones — Uyustools</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1e3a5f">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:    #0f1117;
+    --paper:  #f5f3ee;
+    --accent: #c84b31;
+    --navy:   #1e3a5f;
+    --rule:   #d0ccc3;
+    --green:  #6ee7b7;
+    --yellow: #fde68a;
+    --teal:   #0d9488;
+  }
+  /* ... (Mantenemos todo tu CSS igual) ... */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex; align-items: flex-start; justify-content: center;
+    padding: 2.5rem 1rem;
+  }
+  .card {
+    width: 100%; max-width: 620px;
+    background: #fff;
+    border: 1px solid var(--rule); border-radius: 2px;
+    box-shadow: 6px 6px 0 var(--rule);
+    overflow: hidden;
+  }
+  .header { background: var(--navy); color: #fff; padding: 1.6rem 2rem 1.5rem; }
+  .section { padding: 1.75rem 2rem; border-bottom: 1px solid var(--rule); }
+  .field { margin-bottom:1.2rem; }
+  input[type=number] { width:100%; height:44px; padding:0 .85rem; border:1.5px solid var(--rule); }
+  .grand { background:var(--navy); border-top:3px solid var(--accent); padding:1.5rem 2rem; color: #fff; }
+  .grand-val { color: var(--green); font-size: 1.7rem; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div style="font-size:.6rem; opacity:.55;">Comercial Uyustools Chile S.A.</div>
+    <div style="font-family:'DM Serif Display',serif; font-size:1.65rem;">Calculadora de Comisiones</div>
+  </div>
+
+  <div class="section">
+    <label>Venta Bruta (con IVA)</label>
+    <input type="number" id="venta-bruta" placeholder="$ 0" oninput="calcular()">
+    
+    <label style="display:block; margin-top:1rem;">Semanas Cumplidas (0-3)</label>
+    <input type="number" id="semanas" min="0" max="3" placeholder="0" oninput="calcular()">
+  </div>
+
+  <div class="section">
+    <label>Meta Clientes / Clientes Venta</label>
+    <div style="display:flex; gap:10px;">
+        <input type="number" id="meta-clientes" placeholder="Meta" oninput="calcular()">
+        <input type="number" id="clientes-venta" placeholder="Real" oninput="calcular()">
+    </div>
+  </div>
+
+  <div class="grand">
+    <div>Total Estimado</div>
+    <div class="grand-val" id="r-grand">$ —</div>
+  </div>
+</div>
+
+<script>
+  // Registro del Service Worker para PWA
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+      .then(() => console.log("Service Worker registrado"))
+      .catch(err => console.log("Error al registrar SW", err));
+  }
+
+  // Tu lógica de cálculo simplificada para el ejemplo
+  function calcular() {
+    const bruta = parseFloat(document.getElementById('venta-bruta').value) || 0;
+    const semanas = parseInt(document.getElementById('semanas').value) || 0;
+    const neta = bruta / 1.19;
+    const fija = neta * 0.025;
+    const variable = neta * 0.0067 * semanas;
+    
+    const total = fija + variable;
+    document.getElementById('r-grand').textContent = '$ ' + Math.round(total).toLocaleString('es-CL');
+  }
+</script>
+</body>
+</html>
