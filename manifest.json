@@ -1,7 +1,7 @@
 {
   "name": "Calculadora Comisiones Uyustools",
   "short_name": "UyusCalc",
-  "description": "Calculadora de comisiones para ventas - Chile",
+  "description": "Herramienta de cálculo para ejecutivos de venta Uyustools Chile.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f5f3ee",
