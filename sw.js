@@ -2,6 +2,8 @@ const CACHE_NAME = 'ferrecruztools-v1';
 const assets = [
   './',
   './index.html',
+  './categoria.html',
+  './producto.html',
   './styles.css',
   './manifest.json',
   './icon-192.png',
