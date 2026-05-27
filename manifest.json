@@ -1,11 +1,11 @@
 {
-  "name": "Calculadora Comisiones Uyustools",
-  "short_name": "UyusCalc",
-  "description": "Herramienta de cálculo para ejecutivos de venta Uyustools Chile.",
+  "name": "Ferrecruztools — Herramientas Profesionales",
+  "short_name": "Ferrecruztools",
+  "description": "Catálogo profesional de herramientas eléctricas, manuales, medición y seguridad industrial.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f5f3ee",
-  "theme_color": "#1e3a5f",
+  "background_color": "#F4F4F4",
+  "theme_color": "#E32626",
   "icons": [
     {
       "src": "icon-192.png",

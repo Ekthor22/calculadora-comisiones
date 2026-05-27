@@ -1,7 +1,8 @@
-const CACHE_NAME = 'uyus-calc-v1';
+const CACHE_NAME = 'ferrecruztools-v1';
 const assets = [
   './',
   './index.html',
+  './styles.css',
   './manifest.json',
   './icon-192.png',
   './icon-512.png'
